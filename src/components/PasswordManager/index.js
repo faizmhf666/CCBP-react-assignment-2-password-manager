@@ -27,22 +27,6 @@ class PasswordManager extends Component {
     return updatedList
   }
 
-  onAddDetails = () => {
-    this.event.preventDefault()
-
-    const {inputWebsite, inputUsername, inputPassword} = this.state
-    const newDetails = {
-      website: inputWebsite,
-      username: inputUsername,
-      password: inputPassword,
-      id: uuid(),
-    }
-
-    this.setState(prevState => ({
-      passwordList: [...prevState.passwordList, newDetails],
-    }))
-  }
-
   inputPasswordChange = event => {
     this.setState({inputPassword: event.target.value})
   }
@@ -61,6 +45,22 @@ class PasswordManager extends Component {
 
   onCheckChange = () => {
     this.setState(prevState => ({showPassword: !prevState.showPassword}))
+  }
+
+  onAddDetails = event => {
+    event.preventDefault()
+
+    const {inputWebsite, inputUsername, inputPassword} = this.state
+    const newDetails = {
+      website: inputWebsite,
+      username: inputUsername,
+      password: inputPassword,
+      id: uuid(),
+    }
+
+    this.setState(prevState => ({
+      passwordList: [...prevState.passwordList, newDetails],
+    }))
   }
 
   renderInputForm = () => {
